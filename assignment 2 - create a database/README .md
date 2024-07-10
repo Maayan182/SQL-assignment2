@@ -29,3 +29,4 @@ Populating with Sample Data:
 
 
 ## ERD
+<img src="Screenshot1.png" alt="Image 1" width="45%" style="display: inline-block;">
