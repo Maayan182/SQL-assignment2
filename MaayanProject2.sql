@@ -96,7 +96,7 @@ as
 (
 select SOH.SalesOrderID,SOH.CustomerID,C.FirstName,C.LastName,
 SOH.OrderDate,LAG(SOH.OrderDate,1)over(partition by SOH.CustomerID order by SOH.OrderDate) as PreviousOrderDate,
-Row_number()over(partition by SOH.CustomerID order by SOH.OrderDate desc) as DateRnPerCustomer
+Rank()over(partition by SOH.CustomerID order by SOH.OrderDate desc) as DateRnPerCustomer
 from vCustomerWithPerson C join Sales.SalesOrderHeader SOH
 	on(C.CustomerID = SOH.CustomerID)
 --order by SOH.CustomerID,SOH.OrderDate desc
