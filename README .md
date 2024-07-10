@@ -1,7 +1,7 @@
 
 # SQL Project
 
-This repository contains my solutions to a series of SQL practice questions using the AdventureWorks database.
+This file contains my solutions to a series of SQL practice questions using the AdventureWorks database.
 
 it was given to me as part of a Data Analyst course and is designed to help you strengthen your SQL skill. 
 
