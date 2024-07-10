@@ -25,7 +25,7 @@ from (
 	from Sales.SalesOrderDetail SOD join Production.Product P
 		on (SOD.ProductID = p.ProductID)) tbl
 order by tbl.ProductID
-
+go
 --Q2
 --Write a query that displays information about customers who have not placed any orders.
 --Display: CustomerID, LastName of the customer
@@ -48,7 +48,7 @@ from (
 		ON(C.PersonID =P.BusinessEntityID)
 ) tbl
 order by tbl.CustomerID
-
+go
 --option 2 *SalesOrderHeader.CustomerID is set to not null so I know the nulls are from the join
 
 select C.CustomerID,ISNULL(P.LastName,'Unknown') AS LastName,ISNULL(P.LastName,'Unknown')  as FirstName
@@ -61,7 +61,7 @@ from
 	ON(C.PersonID =P.BusinessEntityID)
 where SOH.CustomerID is null
 order by c.CustomerID
-
+go
 --Q3
 
 --Write a query that displays the details of the top 10 customers who have placed the most orders.
@@ -79,14 +79,14 @@ from Sales.SalesOrderHeader SOH join Sales.Customer C
 	on(C.PersonID =p.BusinessEntityID)
 group by SOH.CustomerID,p.LastName,p.FirstName
 order by countOrders desc
-
+go
 --Q4
 --Write a query that displays information about employees and their roles, 
 --and the number of employees in the same role as the employee.
 select p.FirstName,p.LastName,e.JobTitle,e.HireDate,count(*)over(partition by e.JobTitle) as CountOfTitle
 from HumanResources.Employee E join Person.Person P
 	on(E.BusinessEntityID = P.BusinessEntityID)
-
+go
 
 --Q5
 --Write a query that displays for each customer the date of the last order they placed and the date of the order before the last one.
@@ -104,7 +104,7 @@ from vCustomerWithPerson C join Sales.SalesOrderHeader SOH
 select SalesOrderID,CustomerID,FirstName,LastName,OrderDate as LastOrderDate,PreviousOrderDate 
 from CTE
 where DateRnPerCustomer = 1
-
+go
 --Q6
 --Write a query that displays the total amount of products in the most expensive order for each year, 
 --and show which customers these orders belong to.
@@ -119,7 +119,7 @@ from Sales.SalesOrderHeader SOH join vCustomerWithPerson C
 select Year,SalesOrderID,FirstName,LastName,Total 
 from CTE
 where RNByTotalPerYear = 1
-
+go
 --Q7
 --Display the number of orders made each month in a year using a matrix.
 select Months,[2011],[2012],[2013],[2014]
@@ -130,7 +130,7 @@ from Sales.SalesOrderHeader
 )tbl
 pivot(count(tbl.SalesOrderID) for Years in ([2011],[2012],[2013],[2014]))pvt
 order by Months
-
+go
 --Q8
 --Write a query that displays the total amount of products in orders for each month of the year 
 --and also the cumulative total for each year. Pay attention to the report's appearance.
@@ -165,7 +165,7 @@ from CTE1 left join CTE2
 	CTE1.Months is null then 13
 	else CTE1.Months 
 	end
-
+go
 -- Option 2: when finshing option 1 I realized its better to use subquery/CTE in order to use both grouping sets function and windows function
 --in the same time and that the cumulating sum can be relying on the sum per month in year
 select Years,
@@ -185,12 +185,8 @@ end as SumPerMonthInYear
 from Sales.SalesOrderHeader
 group by GROUPING sets (YEAR(OrderDate),(year(OrderDate),MONTH(OrderDate)))
 )tbl
-
+go
 --Q9
-Here is the translated text:
-
----
-
 --Write a query that displays employees by their order of joining in each department, 
 --from the newest employee to the oldest employee.
 --Display columns: Department name, employee number, full name, hire date, tenure in months,
@@ -215,7 +211,7 @@ from
 CTE this left join CTE pre
  on(this.PreviuosEmpBusinessEntityID = pre.BusinessEntityID)
  order by this.department,this.StartDate desc
-
+go
  --Q10
 --Write a query that displays details of employees who work in the same department and were hired on the same date.
 --List the employees for each combination of hire date and department number, sorted by dates in descending order.
@@ -237,7 +233,7 @@ from HumanResources.EmployeeDepartmentHistory EDH2
 where EndDate is null
 group by DepartmentID,StartDate
 order by StartDate desc
-
+go
 -- so I can add this HAVING to show what I want:
 
 select StartDate,DepartmentID,
