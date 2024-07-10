@@ -17,6 +17,11 @@ AdventureWorks is a sample database from Microsoft that is commonly used for lea
 - make sure you are using the AdventureWorks database.
 - mark down each query and run it individually.
 - notice there is a view I created at the top that is being used in some of the queries. so run this first.
+
+## Additional Information
+- you can learn more about AdventureWorks database [here](https://dataedo.com/samples/html/AdventureWorks/doc/AdventureWorks_2/home.html)
+- for exemple you can learn from this that in Q2 the reason its all 'Unknown' is because all of those customers are stores and they have no first and last name and they are placing orders via a sales person.
+  
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://choosealicense.com/licenses/mit/)  file for details.
 
