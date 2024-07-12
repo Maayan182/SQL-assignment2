@@ -14,7 +14,7 @@ Database Setup:
 
 Import Flat File Using SSMS Import Wizard:
 
-- Place your CSV files (books.csv, authors.csv, genres.csv, etc.) in a directory accessible to your database server.
+- Place your CSV files (librarything_maayan.csv) in a directory accessible to your database server.
 - Right-click on the Database: Right-click on your newly created database in SSMS Object Explorer.
 - Tasks > Import Flat File: Select Tasks -> Import Flat File....
 Flat File Source:
